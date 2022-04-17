@@ -5,21 +5,22 @@
 @section('content')
         <form method="POST" action="{{ route('posts.update', ['post' => $post['id']]) }}">
             @csrf
+            @method('PUT')
             <div class="mb-3">
                 <label for="exampleFormControlInput1" class="form-label">Title</label>
-                <input type="text" class="form-control" id="exampleFormControlInput1" placeholder="" value="{{ $post['title'] }}">
+                <input name="title" type="text" class="form-control" id="exampleFormControlInput1" placeholder="" value="{{ $post->title }}">
             </div>
             <div class="mb-3">
                 <label for="exampleFormControlTextarea1" class="form-label">Description</label>
-                <textarea class="form-control" id="exampleFormControlTextarea1" rows="3"></textarea>
+                <textarea name="description" class="form-control" id="exampleFormControlTextarea1" rows="3">{{ $post->description }}</textarea>
             </div>
 
             <div class="mb-3">
                 <label for="exampleFormControlTextarea1" class="form-label">Post Creator</label>
-                <select class="form-control">
-                    <option value="1" {{ $post['id'] == 1 ? 'selected' : '' }}>Ahmed</option>
-                    <option value="2" {{ $post['id'] == 2 ? 'selected' : '' }}>Mohamed</option>
-                    <option value="3" {{ $post['id'] == 3 ? 'selected' : '' }}>Ali</option>
+                <select name="user_id" class="form-control">
+                    @foreach ($users as $user)
+                    <option value="{{$user->id}}" {{ $post->user_id == $user->id ? 'selected' : '' }}>{{$user->name}}</option>
+                    @endforeach
                 </select>
             </div>
 

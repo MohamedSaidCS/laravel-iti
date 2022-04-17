@@ -10,11 +10,15 @@
         <div class="card-body">
             <div>
                 <span style="font-size: 1.2rem; font-weight: bold">Title: </span>
-                {{$post['title']}}
+                {{$post->title}}
             </div>
             <div>
                 <span style="font-size: 1rem; font-weight: bold">Creator: </span>
-                {{$post['post_creator']}}
+                @if($post->user)
+                <td>{{$post->user->name}}</td>
+                @else
+                    <td>Not Found</td>
+                @endif
             </div>
         </div>
     </div>
