@@ -10,7 +10,7 @@ class PostController extends Controller
 {
     public function index()
     {
-        $posts = Post::all();
+        $posts = Post::paginate(10);
 
         return view('posts.index',[
             'posts' => $posts,
@@ -58,5 +58,17 @@ class PostController extends Controller
         ]);
 
         return view('posts.show', ['post' => $post]);
+    }
+
+    public function delete($id) {
+        $post = Post::find($id);
+
+        return view('posts.delete', ['post' => $post]);
+    }
+
+    public function destroy($id) {
+        Post::find($id)->delete();
+
+        return to_route('posts.index');
     }
 }
