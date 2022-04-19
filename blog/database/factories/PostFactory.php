@@ -20,8 +20,8 @@ class PostFactory extends Factory
         $user_ids = User::pluck('id')->toArray();
         return [
             'user_id' => $this->faker->randomElement($user_ids),
-            'title' => $this->faker->word(),
-            'description' => $this->faker->sentence(),
+            'title' => $this->faker->unique()->words(2, true),
+            'description' => $this->faker->realText(100),
         ];
     }
 }
