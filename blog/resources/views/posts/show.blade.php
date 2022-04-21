@@ -20,6 +20,9 @@
                     <td>Not Found</td>
                 @endif
             </div>
+            <div style="width: 20%">
+                <img class="img-fluid" src="http://127.0.0.1:8000/{{$post->image}}" alt="">
+            </div>
         </div>
     </div>
 

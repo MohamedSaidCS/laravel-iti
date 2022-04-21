@@ -12,7 +12,7 @@
             </ul>
         </div>
         @endif
-        <form method="POST" action="{{ route('posts.update', ['post' => $post['id']]) }}">
+        <form method="POST" action="{{ route('posts.update', ['post' => $post['id']]) }}" enctype="multipart/form-data">
             @csrf
             @method('PUT')
             <div class="mb-3">
@@ -22,6 +22,10 @@
             <div class="mb-3">
                 <label for="exampleFormControlTextarea1" class="form-label">Description</label>
                 <textarea name="description" class="form-control" id="exampleFormControlTextarea1" rows="3">{{ $post->description }}</textarea>
+            </div>
+            <div class="mb-3">
+                <label class="form-label">Image</label>
+                <input type="file" class="form-control" name="image">
             </div>
           <button class="btn btn-primary">Edit</button>
         </form>
