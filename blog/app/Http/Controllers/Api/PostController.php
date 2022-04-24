@@ -10,9 +10,7 @@ class PostController extends Controller
 {
     public function index()
     {
-        $posts = Post::all();
-
-        return PostResource::collection($posts);
+        return PostResource::collection(Post::paginate(10));
     }
 
     public function show($postId)

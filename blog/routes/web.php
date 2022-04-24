@@ -1,8 +1,11 @@
 <?php
 
+use App\Http\Controllers\Auth\LoginController;
 use App\Http\Controllers\CommentController;
 use Illuminate\Support\Facades\Route;
 use App\Http\Controllers\PostController;
+use Illuminate\Support\Facades\Auth;
+use App\Models\User;
 
 /*
 |--------------------------------------------------------------------------
@@ -43,5 +46,13 @@ Route::middleware('auth')->group(function () {
     Route::post('comments', [CommentController::class, 'store'])->name('comments.store');
 
 });
+
+Route::get('/login/github', [LoginController::class, 'github'])->name('github.auth');
+
+Route::get('/github/callback', [LoginController::class, 'githubCallback']);
+
+Route::get('/login/google', [LoginController::class, 'google'])->name('google.auth');
+
+Route::get('/google/callback', [LoginController::class, 'googleCallback']);
 
 Route::get('/home', [App\Http\Controllers\HomeController::class, 'index'])->name('home');
